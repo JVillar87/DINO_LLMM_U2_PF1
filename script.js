@@ -73,8 +73,6 @@ var tiempoObstaculoMax = 1.5;
 var ObstaculoPosY = 16;
 var obstaculos = [];
 
-// var interactuables = [];
-
 var tiempoHastaCoin = 1.5;
 var tiempoHastaCoinMin = 0.5;
 var tiempoHastaCoinMax = 2;
@@ -89,12 +87,15 @@ var minNubeY = 100;
 var clouds = [];
 var velNube = 0.5;
 
-
 var container;
 var dino;
 var textScore;
 var floor;
 var gameOver;
+var restart;
+var audioJump;
+var audioCoin;
+var audioGameOver;
 
 function Start() {
   gameOver = document.querySelector(".game-over");
@@ -270,11 +271,11 @@ function GameOver() {
 }
 
 //REINICIAR JUEGO
-
 function ResetGame() {
-  restart.addEventListener("click", function() {
-  window.location.reload();
-});
+  restart.addEventListener("click", () => {
+  window.location.reload(); //Tarda entre 5 y 10s en recargar la página.
+  console.log("Reiniciando juego...");
+  });
 }
 
 //COLISIÓN CONTRA CACTUS
