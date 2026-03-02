@@ -34,6 +34,8 @@ function Update() {
   MoveCoin();
   DetectarColision();
   DetectarMoneda();
+  ResetGame();
+
 
   //Gravedad
   velY -= gravedad * deltaTime;
@@ -240,10 +242,6 @@ function CrearCoin() {
   coins.push(coin);
   tiempoHastaCoin = tiempoHastaCoinMin + Math.random() * 
   (tiempoHastaCoinMax - tiempoHastaCoinMin) / gameVel;
-
-  // interactuables.push(coin);
-  //   tiempoHastaMoneda = tiempoMonedaMin + Math.random() * 
-  //   (tiempoMonedaMax-tiempoMonedaMin) / gameVel;
 }
 
 function MoveCoin() {
@@ -268,11 +266,15 @@ function GetPoints() {
 function GameOver() {
   Crash();
   gameOver.style.display = "block";
+  restart.style.display = "block";
 }
 
 //REINICIAR JUEGO
-function RestartGame() {
-  //To-Do
+
+function ResetGame() {
+  restart.addEventListener("click", function() {
+  window.location.reload();
+});
 }
 
 //COLISIÓN CONTRA CACTUS
@@ -326,5 +328,5 @@ function IsCollision(a, b, paddingTop, paddingRight, paddingBottom, paddingLeft)
   ) //Calcula si hay colisión entre a y b.
   // Tiene en cuenta el padding para ajustar la zona de colisión
 
-  return !collision;
+  return !IsCollision;
 }

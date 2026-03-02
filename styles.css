@@ -118,22 +118,27 @@ body {
     transform: translate(-50%, -50%);
     color: #da5454;
     font-size: 30px;
-    font-family: monospace;
+    font-family: system-ui, 'Helvetica Neue', sans-serif;
     font-weight: 850;
+    z-index: 100;
 }
 
 .restart{
     display: none;
-
     position: absolute;
+    top: 60%; 
+    left: 50%;
+    border: 1px solid #da5454;
+    transform: translate(-50%, -50%);
     width: 100%;
     text-align: center;
-    top: 60%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     color: #da5454;
-    font-weight: 850;
-} 
+    font-family: system-ui, 'Helvetica Neue', sans-serif;
+    font-weight: 800;
+    z-index: 100; 
+    cursor: pointer; 
+}
+
 
 @keyframes animarDino {
     from{
