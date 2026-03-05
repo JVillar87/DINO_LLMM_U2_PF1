@@ -15,8 +15,8 @@ if (document.readyState === "complete" || document.readyState === "interactive")
 function Init() 
 {
   time = new Date();
-  Start();
-  Loop();
+  Start(); 
+  Loop(); 
 }
 
 //ACTUALIZACIÓN DEL JUEGO
@@ -93,9 +93,13 @@ var textScore;
 var floor;
 var gameOver;
 var restart;
-var audioJump;
-var audioCoin;
-var audioGameOver;
+
+
+var JumpSound;
+var CoinSound;
+var gameOverSound;
+
+
 
 function Start() {
   gameOver = document.querySelector(".game-over");
@@ -104,6 +108,10 @@ function Start() {
   container = document.querySelector("#game-container");
   textScore = document.querySelector("#score");
   dino = document.querySelector("#dino");
+
+  JumpSound = document.querySelector("./jump-sound.mp3");
+  CoinSound = document.querySelector("./coin-received.mp3");
+  gameOverSound = document.querySelector("./freesound_community-game-over-arcade-6435.mp3");
 
   document.addEventListener("keydown", HandleKeyDown);
 }
@@ -121,6 +129,8 @@ function Jump() {
     jumping = true;
     velY = impulso;
     dino.classList.remove("dino-running");
+    JumpSound.currentTime = 0; //Reinicia el sonido (por si se estaba reproduciendo)
+    JumpSound.play();
   }
 }
 
@@ -261,6 +271,8 @@ function MoveCoin() {
 function GetPoints() {
   score++;
   textScore.innerHTML = score
+  CoinSound.currentTime = 0;
+  CoinSound.play();
 }
 
 //ELIMINADO
@@ -268,6 +280,8 @@ function GameOver() {
   Crash();
   gameOver.style.display = "block";
   restart.style.display = "block";
+  gameOverSound.currentTime = 0;
+  gameOverSound.play();
 }
 
 //REINICIAR JUEGO
@@ -305,7 +319,7 @@ function DetectarMoneda () {
     if (coins[i].posX > dinoPosX + dino.clientWidth) {
       break;
     } else {   
-    if (IsCollision(dino, coins[i], 10, 0, 15, 0)) {
+    if (IsCollision(dino, coins[i], 15, 0, 10, 0)) {
         console.log("Moneda recogida");
         GetPoints();
         coins[i].parentNode.removeChild(coins[i]);
